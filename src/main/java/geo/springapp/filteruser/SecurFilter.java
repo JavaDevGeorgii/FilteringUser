@@ -15,7 +15,7 @@ import java.io.IOException;
  * Created by GEO on 20.10.15.
  */
 
-@WebFilter(urlPatterns = {"/aaa"})
+@WebFilter(urlPatterns = {"/aa"})
 public class SecurFilter implements Filter {
 
     @Override
