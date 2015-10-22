@@ -5,7 +5,6 @@ package geo.springapp.filteruser;
  */
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,7 +14,7 @@ import java.io.IOException;
  * Created by GEO on 20.10.15.
  */
 
-@WebFilter(urlPatterns = {"/aa"})
+//@WebFilter(urlPatterns = {"/aa"})
 public class SecurFilter implements Filter {
 
     @Override

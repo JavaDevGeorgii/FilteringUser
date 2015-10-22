@@ -3,6 +3,8 @@ package geo.springapp.filteruser;
 /**
  * Created by dg on 21.10.15.
  */
+
+//@Scope( "session")
 public class User {
     private String name;
     private String pass;
