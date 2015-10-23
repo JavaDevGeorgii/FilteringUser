@@ -4,7 +4,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -26,29 +25,27 @@ public class FilterUser implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        HttpSession session = ((HttpServletRequest) request).getSession();
 
-        String userSession = (String) req.getSession(false).getAttribute("user");
+//        if( ((req.getRequestURI()).contains("login"))){
+//            //chain.doFilter(request,response);
+//            res.sendRedirect("/login");
+//        }
+//        HttpSession session = ((HttpServletRequest) request).getSession();
+
+//        String userSession = ((User) req.getSession().getAttribute("user")).getName();
 
         try {
-//            RequestAttributes attr= (RequestAttributes) RequestContextHolder.getRequestAttributes().getAttribute("user", RequestAttributes.SCOPE_SESSION);
-//            RequestAttributes ra=RequestContextHolder.getRequestAttributes();
-            if (session.getAttribute("user") == null) {
-                //RequestContextHolder.getRequestAttributes().setAttribute("user",new User("Petrov"), RequestAttributes.SCOPE_SESSION);
-                //chain.doFilter(request,response);
-                res.sendRedirect("login");
-            } else {
 
-                chain.doFilter(request, response);
-                //request.setAttribute("user",new User("Ivanov"));
-                //ra.setAttribute("user",new User("Ivanov"),SCOPE_SESSION);
+            if (req.getSession().getAttribute("user") == null || ((req.getRequestURI()).contains("login")) ) {
+
+                //req.getRequestDispatcher("login").forward(request,response);
+                res.sendRedirect("login");
             }
         } catch (Exception e) {
             System.err.print(e);
         }
-        String username = (String) request.getAttribute("user");
-        System.out.println(username);
-        //chain.doFilter(request, response);
+
+        chain.doFilter(request, response);
     }
 
     @Override
